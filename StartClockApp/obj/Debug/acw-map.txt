@@ -1,0 +1,8 @@
+StartClockApp.MainActivity, StartClockApp;md5e45bd087d95e8b27c106479d4406f5c1.MainActivity
+StartClockApp.MainActivity, StartClockApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5e45bd087d95e8b27c106479d4406f5c1.MainActivity
+StartClockApp.MainActivity;md5e45bd087d95e8b27c106479d4406f5c1.MainActivity
+startclockapp.MainActivity;md5e45bd087d95e8b27c106479d4406f5c1.MainActivity
+StartClockApp.StarterView, StartClockApp;md5e45bd087d95e8b27c106479d4406f5c1.StarterView
+StartClockApp.StarterView, StartClockApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null;md5e45bd087d95e8b27c106479d4406f5c1.StarterView
+StartClockApp.StarterView;md5e45bd087d95e8b27c106479d4406f5c1.StarterView
+startclockapp.StarterView;md5e45bd087d95e8b27c106479d4406f5c1.StarterView
