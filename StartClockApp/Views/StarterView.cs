@@ -3,6 +3,7 @@ using Android.Content;
 using Android.Views;
 using Android.Widget;
 using Android.Graphics;
+using System.Collections.Generic;
 
 namespace StartClockApp
 {
@@ -11,6 +12,7 @@ namespace StartClockApp
         LinearLayout listViewContainer;
         ListView listView;
         LinearLayout bottomContainer;
+        StartListAdapter adapter;
 
         public StarterView(Context context) : base(context)
         {
@@ -34,6 +36,10 @@ namespace StartClockApp
             listView = new ListView(Context);
             listView.LayoutParameters = LayoutUtils.GetLayoutParamsMatchParent();
             listViewContainer.AddView(listView);
+
+            // listview adapter
+            adapter = new StartListAdapter(Context, MockUtils.GenerateStartEntryList());
+            listView.Adapter = adapter;
 
             // bottom container
             bottomContainer = new LinearLayout(Context);
