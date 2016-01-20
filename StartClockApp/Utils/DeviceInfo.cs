@@ -22,15 +22,19 @@ namespace StartClockApp
 
         public static long RuntimeMemory;
 
+		public static Android.Graphics.Point RealSize;
+
         public static void Measure(Activity context)
         {
             Resources resources = context.Resources;
 
             ScreenWidth = resources.DisplayMetrics.WidthPixels;
+			RealSize = new Android.Graphics.Point ();
+			context.Window.WindowManager.DefaultDisplay.GetRealSize (RealSize);
 
             ScreenHeight = resources.DisplayMetrics.HeightPixels;
 
-            int navBarId = resources.GetIdentifier("navigation_bar_height", "dimen", "android");
+			int navBarId = resources.GetIdentifier("navigation_bar_height", "dimen", "android");
             int statusbarId = resources.GetIdentifier("status_bar_height", "dimen", "android");
 
             NavigationBarHeight = resources.GetDimensionPixelSize(navBarId);
