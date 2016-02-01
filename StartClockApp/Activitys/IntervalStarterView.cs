@@ -4,6 +4,7 @@ using Android.Content;
 using Android.Graphics;
 using Android.Widget;
 using System.Collections.Generic;
+using Android.Views;
 
 namespace StartClockApp
 {
@@ -35,7 +36,6 @@ namespace StartClockApp
             BackgroundColor = Color.AliceBlue;
 
             countDownView = new CountdownView(context);
-            countDownView.Init();
 
             clockView = new ClockView(context);
             clockView.Init();
@@ -62,9 +62,17 @@ namespace StartClockApp
 
 			List<MenuItemInfo> menuItemsList = new List<MenuItemInfo>  {
 				new MenuItemInfo {
-					Text = "Set start time", 
+					Text = "Set start time",
 					ClickAction = delegate {
-						Console.WriteLine ("# ClickAction");
+						var now = DateTime.Now.ToLocalTime ().AddMinutes (1);
+						TimePickerDialog timePickerDialog = new TimePickerDialog (
+							context,
+							TimePickerFinishedAction,
+							now.Hour,
+							now.Minute,
+							true
+						);
+						timePickerDialog.Show ();
 					}
 				}
 			};
@@ -112,13 +120,19 @@ namespace StartClockApp
 		void OnMenuButtonClick (object sender, EventArgs e)
 		{
 			if (isMenuOpen) {
-//				menuContainer.Animate ().TranslationY (Frame.H);
-				menuContainer.Frame = new Frame (0, Frame.H, Frame.W, Frame.H);
+				menuContainer.Animate ().TranslationY (Frame.H);
 			} else {
-//				menuContainer.Animate ().TranslationY (0);
 				menuContainer.Frame = new Frame (0, 0, Frame.W, Frame.H);
+				menuContainer.Animate ().TranslationY (0);
 			}
 			isMenuOpen = !isMenuOpen;
+		}
+
+		void TimePickerFinishedAction (object sender, TimePickerDialog.TimeSetEventArgs args)
+		{
+			Console.WriteLine (args.HourOfDay + " - " + args.Minute);
+			countDownView.Init(args.HourOfDay, args.Minute);
+
 		}
     }
 }
