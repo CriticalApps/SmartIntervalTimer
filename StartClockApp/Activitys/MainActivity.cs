@@ -13,11 +13,11 @@ namespace StartClockApp
     {
         IntervalStarterView contentView;
 
-        protected override void OnCreate(Bundle bundle)
+        protected override void OnCreate (Bundle bundle)
         {
             base.OnCreate(bundle);
 
-			ActionBar.Hide();
+			ActionBar.Hide ();
 			Window.AddFlags (WindowManagerFlags.Fullscreen);
 			Window.DecorView.SystemUiVisibility = (StatusBarVisibility)(
 				SystemUiFlags.Fullscreen |
@@ -25,8 +25,6 @@ namespace StartClockApp
 				SystemUiFlags.ImmersiveSticky
 			);
 
-//			Window.AddFlags(WindowManagerFlags.Fullscreen);
-//			this.Window.ClearFlags(WindowManagerFlags.Fullscreen);
             DeviceInfo.Measure(this);
 
             contentView = new IntervalStarterView(this);
@@ -37,7 +35,6 @@ namespace StartClockApp
         protected override void OnStart()
         {
             base.OnStart();
-//            ActionBar.Hide();
 
 			// needed just once
             CurrentTimeUtls.InitTime();

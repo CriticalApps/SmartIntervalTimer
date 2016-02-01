@@ -2,6 +2,8 @@
 using Android.App;
 using Android.Content;
 using Android.Graphics;
+using Android.Widget;
+using System.Collections.Generic;
 
 namespace StartClockApp
 {
@@ -17,10 +19,12 @@ namespace StartClockApp
         UIView container;
 
         UIView menuContainer;
+		UIListView menuListView;
 
-		UIView menuList;
+		MenuListAdapter menuListAdapter;
 
 		bool isMenuOpen;
+
 
         public IntervalStarterView(Activity context) : base (context)
         {
@@ -52,10 +56,27 @@ namespace StartClockApp
             container.AddViews(countDownView, clockView, btnContainer);
 
             menuContainer = new UIView(context);
+			menuContainer.BackgroundColor = Color.DarkGray;
 
-			menuList = new UIView (context);
-			menuList.BackgroundColor = Color.LightGray;
-			menuContainer.AddView (menuList);
+			menuListView = new UIListView (context);
+
+			List<MenuItemView> menuItemsList = new List<MenuItemView>  {
+				new MenuItemView (context) {
+					Text = "Set start time",
+					ClickAction = delegate {
+						Console.WriteLine ("# ClickAction");
+					}
+				}
+			};
+
+
+
+			menuListAdapter = new MenuListAdapter (context, menuItemsList);
+			menuListView.Adapter = menuListAdapter;
+
+			menuListView.SetOnClickListener (new MenuClickListener ());
+
+			menuContainer.AddView (menuListView);
 
             AddViews(container, menuContainer);
 
@@ -89,7 +110,7 @@ namespace StartClockApp
 
 			menuContainer.Frame = new Frame (0, Frame.H, Frame.W, Frame.H);
 			int menuListHeight = (int)(menuContainer.Frame.H * 0.25f);
-			menuList.Frame = new Frame (0, menuContainer.Frame.H - menuListHeight, menuContainer.Frame.W, menuListHeight);
+			menuListView.Frame = new Frame (0, menuContainer.Frame.H - menuListHeight, menuContainer.Frame.W, menuListHeight);
         }
 
 		void OnMenuButtonClick (object sender, EventArgs e)
@@ -104,4 +125,31 @@ namespace StartClockApp
 			isMenuOpen = !isMenuOpen;
 		}
     }
+
+	class MenuClickListener : Android.Views.View.IOnClickListener
+	{
+		#region IOnClickListener implementation
+		public void OnClick (Android.Views.View v)
+		{
+			var menuItem = v as MenuItemView;
+			if (menuItem != null) {
+				menuItem.OnClick ();
+			}
+		}
+		#endregion
+		#region IDisposable implementation
+		public void Dispose ()
+		{
+			throw new NotImplementedException ();
+		}
+		#endregion
+		#region IJavaObject implementation
+		public IntPtr Handle {
+			get {
+				throw new NotImplementedException ();
+			}
+		}
+		#endregion
+		
+	}
 }
