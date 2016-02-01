@@ -6,22 +6,10 @@ using Android.Widget;
 
 namespace StartClockApp
 {
-	public class MenuItemView : UITableCell
+	class MenuItemInfo
 	{
 		public string Text { get; set; }
 		public Action ClickAction { get; set; }
-
-		public MenuItemView (Activity context) : base (context)
-		{
-			
-		}
-
-		public void OnClick ()
-		{
-			if (ClickAction != null) {
-				ClickAction ();
-			}
-		}
 	}
 
 

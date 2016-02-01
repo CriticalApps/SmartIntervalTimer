@@ -75,6 +75,7 @@
     <Compile Include="Views\MenuItemView.cs" />
     <Compile Include="Views\Common\UIListView.cs" />
     <Compile Include="Views\UITableCell.cs" />
+    <Compile Include="Adapters\MenuListCell.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

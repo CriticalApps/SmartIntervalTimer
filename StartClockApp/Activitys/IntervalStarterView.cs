@@ -56,25 +56,21 @@ namespace StartClockApp
             container.AddViews(countDownView, clockView, btnContainer);
 
             menuContainer = new UIView(context);
-			menuContainer.BackgroundColor = Color.DarkGray;
-
+			menuContainer.Click += OnMenuButtonClick;
 			menuListView = new UIListView (context);
+			menuListView.SetBackgroundColor (Color.DarkGray);
 
-			List<MenuItemView> menuItemsList = new List<MenuItemView>  {
-				new MenuItemView (context) {
-					Text = "Set start time",
+			List<MenuItemInfo> menuItemsList = new List<MenuItemInfo>  {
+				new MenuItemInfo {
+					Text = "Set start time", 
 					ClickAction = delegate {
 						Console.WriteLine ("# ClickAction");
 					}
 				}
 			};
 
-
-
 			menuListAdapter = new MenuListAdapter (context, menuItemsList);
 			menuListView.Adapter = menuListAdapter;
-
-			menuListView.SetOnClickListener (new MenuClickListener ());
 
 			menuContainer.AddView (menuListView);
 
@@ -125,31 +121,4 @@ namespace StartClockApp
 			isMenuOpen = !isMenuOpen;
 		}
     }
-
-	class MenuClickListener : Android.Views.View.IOnClickListener
-	{
-		#region IOnClickListener implementation
-		public void OnClick (Android.Views.View v)
-		{
-			var menuItem = v as MenuItemView;
-			if (menuItem != null) {
-				menuItem.OnClick ();
-			}
-		}
-		#endregion
-		#region IDisposable implementation
-		public void Dispose ()
-		{
-			throw new NotImplementedException ();
-		}
-		#endregion
-		#region IJavaObject implementation
-		public IntPtr Handle {
-			get {
-				throw new NotImplementedException ();
-			}
-		}
-		#endregion
-		
-	}
 }

@@ -4,7 +4,7 @@ using Android.Widget;
 
 namespace StartClockApp
 {
-	public class UITableCell : UIView
+	class UITableCell : UIView
 	{
 		Frame frame;
 		public override Frame Frame {
